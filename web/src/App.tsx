@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {connect} from 'react-redux';
 import './App.css';
+import logo from './logo.svg';
+import {AppState} from './store';
+import {sendMessage} from './store/system/actions';
+import {State} from './store/system/types';
 
-class App extends Component {
-  render() {
+
+const mapStateToProps = (state: AppState) => ({
+  system: state.system,
+});
+
+interface AppProps {
+  sendMessage: typeof sendMessage;
+  system: State;
+}
+
+type ReduxType = ReturnType<typeof mapStateToProps>;
+
+class App extends React.Component<ReduxType> {
+  public render() {
+    const { system } = this.props;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        {JSON.stringify(system)}
       </div>
     );
   }
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
