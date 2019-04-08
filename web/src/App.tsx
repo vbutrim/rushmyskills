@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './App.css';
+import Menu from './components/Menu';
+import MenuContainer from './components/MenuContainer';
 import logo from './logo.svg';
 import {AppState} from './store';
 import {sendMessage} from './store/system/actions';
@@ -24,6 +26,7 @@ class App extends React.Component<ReduxType> {
 
     return (
       <div>
+        <MenuContainer />
         {JSON.stringify(system)}
       </div>
     );

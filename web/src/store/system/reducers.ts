@@ -3,7 +3,7 @@
 import {ActionTypes, SEND_MESSAGE, State} from './types';
 
 const initialState: State = {
-    messages: [],
+    messages: [{user: 'Hello'}],
     str: 'OLA',
 };
 

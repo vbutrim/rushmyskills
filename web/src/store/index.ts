@@ -1,6 +1,5 @@
 import {combineReducers, createStore} from 'redux';
 import {mainReducer} from './system/reducers';
-import {Message} from './system/types';
 
 const rootReducer = combineReducers({
     system: mainReducer,
