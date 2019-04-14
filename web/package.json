@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "rushmyskills",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,10 +8,13 @@
     "@types/react": "^16.8.12",
     "@types/react-dom": "^16.8.3",
     "@types/react-redux": "^7.0.6",
+    "@types/react-router-dom": "^4.3.2",
     "braces": "^2.3.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-facebook-login": "^4.1.1",
     "react-redux": "^6.0.1",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
     "semantic-ui-react": "^0.86.0",
