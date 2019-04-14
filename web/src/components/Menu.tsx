@@ -10,6 +10,8 @@ class Menu extends React.Component<MenuProps> {
         return (
             <div>
                 {this.props.my.user}
+                <input />
+                <button>Add Message</button>
             </div>
         );
     }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import './App.css';
-import Menu from './components/Menu';
+import {Header} from './components/Header';
+import {Main} from './components/Main';
 import MenuContainer from './components/MenuContainer';
-import logo from './logo.svg';
 import {AppState} from './store';
 import {sendMessage} from './store/system/actions';
 import {State} from './store/system/types';
@@ -26,8 +26,8 @@ class App extends React.Component<ReduxType> {
 
     return (
       <div>
-        <MenuContainer />
-        {JSON.stringify(system)}
+        <Header />
+        <Main />
       </div>
     );
   }
