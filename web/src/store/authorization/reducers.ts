@@ -8,6 +8,10 @@ export function authorizationReducer(
 ): State {
     switch (action.type) {
         case GET_AUTHORIZED:
+            if (action.payload.accessToken == null) {
+                return initialState;
+            }
+
             return {
                 authorization: {
                     isLoggedIn: true,

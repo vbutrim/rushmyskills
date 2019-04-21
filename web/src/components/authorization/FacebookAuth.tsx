@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {BrowserView, isMobile, MobileOnlyView, MobileView} from 'react-device-detect';
 import FacebookLogin from 'react-facebook-login';
 import {Authorization} from '../../store/authorization/types';
 import {ExtendedReactFacebookLoginInfo} from './ExtendedReactFacebookLoginInfo';
-
 
 
 interface FacebookAuthProps {
@@ -24,8 +24,8 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
                     textAlign: 'center',
                 }}>
                     <img src={this.props.authorization.picture}
-                         alt={this.props.authorization.name} />
-                         <h2>Привет, {this.props.authorization.name}!</h2>
+                         alt={this.props.authorization.name}/>
+                    <h2>Привет, {this.props.authorization.name}!</h2>
                     Email: {this.props.authorization.email}
                 </div>
             );
@@ -35,6 +35,10 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
                     appId="320715538590493"
                     autoLoad={false}
                     fields="name,email,picture"
+                    language="ru_RU"
+                    textButton="Продолжить с Facebook"
+                    size="small"
+                    isMobile={isMobile}
                     onClick={this.componentClicked}
                     callback={this.responseFacebook}/>
             );
@@ -42,6 +46,9 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
 
         return (
             <div>
+                {/*TODO: remove it after test on mobile*/}
+                <BrowserView>You are from Browser</BrowserView>
+                <MobileView>You are from Mobile</MobileView>
                 {fbContent}
             </div>
         );
