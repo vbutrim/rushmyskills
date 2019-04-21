@@ -1,9 +1,9 @@
 // Actions
 
-import {ReactFacebookLoginInfo} from 'react-facebook-login';
-import {ActionTypes, Authorization, GET_AUTHORIZED} from './types';
+import {ExtendedReactFacebookLoginInfo} from '../../components/authorization/ExtendedReactFacebookLoginInfo';
+import {ActionTypes, GET_AUTHORIZED} from './types';
 
-export function getAuthorized(facebookLoginInfo: ReactFacebookLoginInfo) {
+export function getAuthorized(facebookLoginInfo: ExtendedReactFacebookLoginInfo) {
     return {
         type: GET_AUTHORIZED,
         payload: facebookLoginInfo,

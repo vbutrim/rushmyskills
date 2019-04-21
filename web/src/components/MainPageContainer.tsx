@@ -12,7 +12,7 @@ type ReduxType = ReturnType<typeof mapStateToProps>;
 class MainPageContainer extends React.Component<ReduxType> {
     public render(): React.ReactNode {
         return (
-            <MainPage my={this.props.message} />
+            <MainPage auth={this.props.message} />
         );
     }
 }

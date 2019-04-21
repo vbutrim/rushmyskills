@@ -9,7 +9,13 @@ export function authorizationReducer(
     switch (action.type) {
         case GET_AUTHORIZED:
             return {
-                authorization: state.authorization,
+                authorization: {
+                    isLoggedIn: true,
+                    userId: action.payload.id,
+                    name: action.payload.name,
+                    email: action.payload.email,
+                    picture: action.payload.picture.data.url,
+                },
                 str: state.str,
             };
         default:

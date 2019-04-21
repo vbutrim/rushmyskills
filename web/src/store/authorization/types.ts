@@ -1,16 +1,16 @@
 // Types
 
-import {ReactFacebookLoginInfo} from 'react-facebook-login';
 import { ActionType } from 'typesafe-actions';
+import {ExtendedReactFacebookLoginInfo} from '../../components/authorization/ExtendedReactFacebookLoginInfo';
 import * as actions from './actions';
 
 // STATE
 export interface Authorization {
     isLoggedIn: boolean;
     userId: string;
-    name: string;
-    email: string;
-    picture: string;
+    name?: string;
+    email?: string;
+    picture?: string;
 }
 
 export interface State {
@@ -23,9 +23,9 @@ export const initialState: State = {
     authorization: {
         isLoggedIn: false,
         userId: '',
-        name: '',
-        email: '',
-        picture: '',
+        name: undefined,
+        email: undefined,
+        picture: undefined,
     },
     str: 'OLA',
 };
@@ -35,7 +35,7 @@ export const GET_AUTHORIZED = 'GET_AUTHORIZED';
 
 interface GetAuthorizedAction {
     type: typeof GET_AUTHORIZED;
-    payload: ReactFacebookLoginInfo;
+    payload: ExtendedReactFacebookLoginInfo;
 }
 
 export type ActionTypes = ActionType<typeof actions>;

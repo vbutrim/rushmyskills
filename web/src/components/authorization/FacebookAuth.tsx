@@ -1,17 +1,34 @@
 import React, {Component} from 'react';
-import FacebookLogin, {ReactFacebookLoginInfo} from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login';
 import {Authorization} from '../../store/authorization/types';
+import {ExtendedReactFacebookLoginInfo} from './ExtendedReactFacebookLoginInfo';
+
+
 
 interface FacebookAuthProps {
     authorization: Authorization;
+    getAuthorized: (facebookLoginInfo: ExtendedReactFacebookLoginInfo) => {};
 }
 
-class FacebookAuth extends React.Component<any, FacebookAuthProps> {
+class FacebookAuth extends React.Component<FacebookAuthProps> {
     public render(): React.ReactNode {
         let fbContent;
 
         if (this.props.authorization.isLoggedIn) {
-            fbContent = null;
+            fbContent = (
+                <div style={{
+                    width: '400px',
+                    margin: 'auto',
+                    background: '#f4f4f4',
+                    padding: '20px',
+                    textAlign: 'center',
+                }}>
+                    <img src={this.props.authorization.picture}
+                         alt={this.props.authorization.name} />
+                         <h2>Привет, {this.props.authorization.name}!</h2>
+                    Email: {this.props.authorization.email}
+                </div>
+            );
         } else {
             fbContent = (
                 <FacebookLogin
@@ -34,8 +51,9 @@ class FacebookAuth extends React.Component<any, FacebookAuthProps> {
         console.log('clicked');
     }
 
-    private responseFacebook = (response: ReactFacebookLoginInfo) => {
+    private responseFacebook = (response: ExtendedReactFacebookLoginInfo) => {
         console.log(response);
+        this.props.getAuthorized(response);
     }
 }
 
