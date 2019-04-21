@@ -1,8 +1,8 @@
 import {combineReducers, createStore} from 'redux';
-import {mainReducer} from './system/reducers';
+import {authorizationReducer} from './system/reducers';
 
 const rootReducer = combineReducers({
-    system: mainReducer,
+    system: authorizationReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

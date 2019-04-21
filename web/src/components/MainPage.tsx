@@ -1,5 +1,6 @@
 import React from 'react';
 import {Authorization} from '../store/system/types';
+import FacebookAuthContainer from './authorization/FacebookAuthContainer';
 
 interface MenuProps {
     my: Authorization;
@@ -10,6 +11,7 @@ class MainPage extends React.Component<MenuProps> {
         return (
             <div>
                 {this.props.my.isLoggedIn ? 'authorized' : 'not authorized'}
+                <FacebookAuthContainer />
                 <p/>
                 <input />
                 <button>Add Message</button>

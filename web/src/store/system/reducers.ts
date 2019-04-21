@@ -2,7 +2,7 @@
 
 import {ActionTypes, initialState, SEND_MESSAGE, State} from './types';
 
-export function mainReducer(
+export function authorizationReducer(
     state = initialState,
     action: ActionTypes
 ): State {
