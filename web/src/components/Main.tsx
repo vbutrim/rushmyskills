@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route, Switch} from 'react-router';
 import MenuContainer from './MenuContainer';
+import Policy from './Policy';
 
 
 export const Main = () => (
@@ -10,10 +11,4 @@ export const Main = () => (
             <Route path="/policy" component={Policy} />
         </Switch>
     </main>
-);
-
-const Policy = () => (
-    <div>
-        <h1>It's a policy, baby!</h1>
-    </div>
 );
