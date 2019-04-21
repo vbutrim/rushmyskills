@@ -1,5 +1,5 @@
 import React from 'react';
-import {Authorization} from '../store/system/types';
+import {Authorization} from '../store/authorization/types';
 import FacebookAuthContainer from './authorization/FacebookAuthContainer';
 
 interface MenuProps {

@@ -5,8 +5,8 @@ import {Header} from './components/Header';
 import {MainPageRouter} from './components/MainPageRouter';
 import MenuContainer from './components/MainPageContainer';
 import {AppState} from './store';
-import {sendMessage} from './store/system/actions';
-import {State} from './store/system/types';
+import {getAuthorized} from './store/authorization/actions';
+import {State} from './store/authorization/types';
 
 
 const mapStateToProps = (state: AppState) => ({
@@ -14,7 +14,7 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 interface AppProps {
-  sendMessage: typeof sendMessage;
+  sendMessage: typeof getAuthorized;
   system: State;
 }
 

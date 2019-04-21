@@ -1,5 +1,9 @@
 // Types
 
+import {ReactFacebookLoginInfo} from 'react-facebook-login';
+import { ActionType } from 'typesafe-actions';
+import * as actions from './actions';
+
 // STATE
 export interface Authorization {
     isLoggedIn: boolean;
@@ -27,11 +31,11 @@ export const initialState: State = {
 };
 
 // ACTION NAME
-export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const GET_AUTHORIZED = 'GET_AUTHORIZED';
 
-interface SendMessageAction {
-    type: typeof SEND_MESSAGE;
-    payload: Authorization;
+interface GetAuthorizedAction {
+    type: typeof GET_AUTHORIZED;
+    payload: ReactFacebookLoginInfo;
 }
 
-export type ActionTypes = SendMessageAction;
+export type ActionTypes = ActionType<typeof actions>;

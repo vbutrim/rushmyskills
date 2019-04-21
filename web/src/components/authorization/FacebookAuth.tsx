@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FacebookLogin, {ReactFacebookLoginInfo} from 'react-facebook-login';
-import {Authorization} from '../../store/system/types';
+import {Authorization} from '../../store/authorization/types';
 
 interface FacebookAuthProps {
     authorization: Authorization;

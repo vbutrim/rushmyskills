@@ -1,13 +1,13 @@
 // Reducers
 
-import {ActionTypes, initialState, SEND_MESSAGE, State} from './types';
+import {ActionTypes, GET_AUTHORIZED, initialState, State} from './types';
 
 export function authorizationReducer(
     state = initialState,
     action: ActionTypes
 ): State {
     switch (action.type) {
-        case SEND_MESSAGE:
+        case GET_AUTHORIZED:
             return {
                 authorization: state.authorization,
                 str: state.str,
