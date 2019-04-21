@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {EmptyProps} from '../common/EmptyProps';
+import {EmptyProps} from '../../common/EmptyProps';
 
 const Div = styled.div`
   margin: 40px;

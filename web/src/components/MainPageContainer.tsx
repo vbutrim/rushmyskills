@@ -4,7 +4,7 @@ import {AppState} from '../store';
 import MainPage from './MainPage';
 
 const mapStateToProps = (state: AppState) => ({
-    message: state.system.messages[0],
+    message: state.system.authorization,
 });
 
 type ReduxType = ReturnType<typeof mapStateToProps>;

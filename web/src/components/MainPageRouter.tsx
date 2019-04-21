@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, Switch} from 'react-router';
-import ErrorNotFound from './ErrorNotFound';
 import MenuContainer from './MainPageContainer';
-import Policy from './Policy';
-import TermsOfUse from './TermsOfUse';
+import ErrorNotFound from './static/ErrorNotFound';
+import Policy from './static/Policy';
+import TermsOfUse from './static/TermsOfUse';
 
 
 export const MainPageRouter = () => (

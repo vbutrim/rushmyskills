@@ -1,11 +1,6 @@
 // Reducers
 
-import {ActionTypes, SEND_MESSAGE, State} from './types';
-
-const initialState: State = {
-    messages: [{user: 'Hello'}],
-    str: 'OLA',
-};
+import {ActionTypes, initialState, SEND_MESSAGE, State} from './types';
 
 export function mainReducer(
     state = initialState,
@@ -14,7 +9,7 @@ export function mainReducer(
     switch (action.type) {
         case SEND_MESSAGE:
             return {
-                messages: [...state.messages, action.payload],
+                authorization: state.authorization,
                 str: state.str,
             };
         default:
