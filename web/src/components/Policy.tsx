@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {EmptyProps} from '../common/EmptyProps';
 
 const Div = styled.div`
   margin: 40px;
@@ -10,10 +11,7 @@ const policyText = {
     padding: '15px',
 } as React.CSSProperties;
 
-interface PolicyProps {
-}
-
-class Policy extends React.Component<PolicyProps> {
+class Policy extends React.Component<EmptyProps> {
     public render(): React.ReactNode {
         return (
             <Div>
