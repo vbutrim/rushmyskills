@@ -5,7 +5,7 @@ interface MenuProps {
     my: Message;
 }
 
-class Menu extends React.Component<MenuProps> {
+class MainPage extends React.Component<MenuProps> {
     public render(): React.ReactNode {
         return (
             <div>
@@ -17,4 +17,4 @@ class Menu extends React.Component<MenuProps> {
     }
 }
 
-export default Menu;
+export default MainPage;

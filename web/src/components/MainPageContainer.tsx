@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {AppState} from '../store';
-import Menu from './Menu';
+import MainPage from './MainPage';
 
 const mapStateToProps = (state: AppState) => ({
     message: state.system.messages[0],
@@ -9,12 +9,12 @@ const mapStateToProps = (state: AppState) => ({
 
 type ReduxType = ReturnType<typeof mapStateToProps>;
 
-class MenuContainer extends React.Component<ReduxType> {
+class MainPageContainer extends React.Component<ReduxType> {
     public render(): React.ReactNode {
         return (
-            <Menu my={this.props.message} />
+            <MainPage my={this.props.message} />
         );
     }
 }
 
-export default connect(mapStateToProps)(MenuContainer);
+export default connect(mapStateToProps)(MainPageContainer);
