@@ -39,6 +39,7 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
                     textButton="Продолжить с Facebook"
                     size="small"
                     isMobile={isMobile}
+                    disableMobileRedirect={true} // https://github.com/keppelen/react-facebook-login/issues/124
                     onClick={this.componentClicked}
                     callback={this.responseFacebook}/>
             );
@@ -46,9 +47,6 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
 
         return (
             <div>
-                {/*TODO: remove it after test on mobile*/}
-                <BrowserView>You are from Browser</BrowserView>
-                <MobileView>You are from Mobile</MobileView>
                 {fbContent}
             </div>
         );
