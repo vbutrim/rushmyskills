@@ -1,9 +1,9 @@
 package com.mentor.rushmyskills.model;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
-                "userId"
+                "fbUserId"
         }),
         @UniqueConstraint(columnNames = {
                 "email"
@@ -30,7 +30,7 @@ public class User {
         @NotBlank
         @Size(max = 50)
         @NonNull
-        private String userId;
+        private String fbUserId;
 
         @NotBlank
         @Size(max = 50)
@@ -41,7 +41,7 @@ public class User {
         @Size(max = 50)
         @Email
         @NonNull
-        private Email email;
+        private String email;
 
         @NotBlank
         @Size(max = 50)
