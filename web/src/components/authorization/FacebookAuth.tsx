@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserView, isMobile, MobileOnlyView, MobileView} from 'react-device-detect';
+import {isMobile} from 'react-device-detect';
 import FacebookLogin from 'react-facebook-login';
 import {Authorization} from '../../store/authorization/types';
 import {ExtendedReactFacebookLoginInfo} from './ExtendedReactFacebookLoginInfo';
@@ -39,7 +39,7 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
                     textButton="Продолжить с Facebook"
                     size="small"
                     isMobile={isMobile}
-                    disableMobileRedirect={true} // https://github.com/keppelen/react-facebook-login/issues/124
+                    disableMobileRedirect={true} // Explanation: https://github.com/keppelen/react-facebook-login/issues/124
                     onClick={this.componentClicked}
                     callback={this.responseFacebook}/>
             );
