@@ -35,7 +35,7 @@ public class JwtTokenFactory {
 
     private AccessJwtToken createAccessJwtToken(UserContext userContext) {
         if (StringUtils.isBlank(userContext.getFbUserId()))
-            throw new IllegalArgumentException("Cannot create JWT Token without FbUserid");
+            throw new IllegalArgumentException("Cannot create JWT Token without FbUserId");
 
         Claims claims = Jwts.claims().setSubject(userContext.getFbUserId());
         claims.put("scopes", userContext.getAuthorities().stream().map(Object::toString).collect(Collectors.toList()));
@@ -53,7 +53,7 @@ public class JwtTokenFactory {
 
     private JwtToken createRefreshToken(UserContext userContext) {
         if (StringUtils.isBlank(userContext.getFbUserId())) {
-            throw new IllegalArgumentException("Cannot create JWT Token without FbUserid");
+            throw new IllegalArgumentException("Cannot create JWT Token without FbUserId");
         }
 
         Claims claims = Jwts.claims().setSubject(userContext.getFbUserId());

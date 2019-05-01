@@ -1,5 +1,7 @@
-package com.mentor.rushmyskills.security;
+package com.mentor.rushmyskills.security.filter;
 
+import com.mentor.rushmyskills.security.token.RawAccessJwtToken;
+import com.mentor.rushmyskills.security.WebSecurityConfig;
 import com.mentor.rushmyskills.security.extractor.TokenExtractor;
 import com.mentor.rushmyskills.security.token.JwtAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;

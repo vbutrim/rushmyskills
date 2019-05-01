@@ -1,4 +1,4 @@
-package com.mentor.rushmyskills.security;
+package com.mentor.rushmyskills.security.filter;
 
 import com.mentor.rushmyskills.security.config.JwtSettings;
 import org.slf4j.Logger;

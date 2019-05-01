@@ -1,6 +1,5 @@
 package com.mentor.rushmyskills.security.token;
 
-import com.mentor.rushmyskills.security.RawAccessJwtToken;
 import com.mentor.rushmyskills.security.UserContext;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

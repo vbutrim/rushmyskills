@@ -1,6 +1,6 @@
-package com.mentor.rushmyskills.security;
+package com.mentor.rushmyskills.security.token;
 
-import com.mentor.rushmyskills.security.token.JwtToken;
+import com.mentor.rushmyskills.security.InvalidTokenException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;

@@ -1,6 +1,5 @@
 package com.mentor.rushmyskills.security.token;
 
-import com.mentor.rushmyskills.security.RawAccessJwtToken;
 import com.mentor.rushmyskills.security.UserContext;
 import com.mentor.rushmyskills.security.config.JwtSettings;
 import io.jsonwebtoken.Claims;

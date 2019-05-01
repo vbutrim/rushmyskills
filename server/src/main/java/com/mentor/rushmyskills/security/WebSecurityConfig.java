@@ -1,7 +1,7 @@
 package com.mentor.rushmyskills.security;
 
+import com.mentor.rushmyskills.security.filter.CorsRequestFilter;
 import com.mentor.rushmyskills.security.token.JwtAuthenticationProvider;
-import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +15,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -69,6 +67,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll()
                     .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()
+
+                    .anyRequest().authenticated()
 /*                .antMatchers(H2_ENTRY_POINT).permitAll()*/
 /*                .and()
                     .authorizeRequests()
