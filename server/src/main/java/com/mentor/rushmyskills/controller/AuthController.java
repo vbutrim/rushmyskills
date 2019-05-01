@@ -8,13 +8,15 @@ import com.mentor.rushmyskills.security.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
@@ -33,7 +35,7 @@ public class AuthController {
         this.tokenProvider = tokenProvider;
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity authenticateFacebookUser(@Valid @RequestBody FBLoginRequest fbLoginRequest) {
 
         @NotBlank String fbUserId = fbLoginRequest.getUserId();
@@ -73,7 +75,7 @@ public class AuthController {
             userRepository.save(user);
         }
 
-        Map<String, String> tokens = tokenProvider.createTokenPair(UserContext.create(fbUserId, null));
+        Map<String, String> tokens = tokenProvider.createTokenPair(UserContext.create(fbUserId, Collections.emptyList()));
         return ResponseEntity.ok(tokens);
     }
 

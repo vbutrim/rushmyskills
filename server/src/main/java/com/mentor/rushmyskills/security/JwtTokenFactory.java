@@ -76,7 +76,7 @@ public class JwtTokenFactory {
         JwtToken refreshToken = createRefreshToken(userContext);
 
         Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("token", accessToken.getToken());
+        tokenMap.put("accessToken", accessToken.getToken());
         tokenMap.put("refreshToken", refreshToken.getToken());
         return tokenMap;
     }

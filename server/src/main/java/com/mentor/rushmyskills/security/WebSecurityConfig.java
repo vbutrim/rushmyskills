@@ -12,6 +12,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -26,12 +31,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final RestAuthenticationEntryPoint authenticationEntryPoint;
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
+    private final CorsRequestFilter corsRequestFilter;
 
     @Autowired
     public WebSecurityConfig(RestAuthenticationEntryPoint authenticationEntryPoint,
-                             JwtAuthenticationProvider jwtAuthenticationProvider) {
+                             JwtAuthenticationProvider jwtAuthenticationProvider,
+                             CorsRequestFilter corsRequestFilter) {
         this.authenticationEntryPoint = authenticationEntryPoint;
         this.jwtAuthenticationProvider = jwtAuthenticationProvider;
+        this.corsRequestFilter = corsRequestFilter;
     }
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
@@ -39,7 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
@@ -50,22 +57,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf().disable()
-                .exceptionHandling()
+                // handle an authorized attempts
+                .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .authenticationEntryPoint(this.authenticationEntryPoint)
 
                 .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    // make sure we use stateless session; session won't be used to store user's state.
+                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 .and()
-                .authorizeRequests()
-                .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll()
-                .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()
-                .antMatchers(H2_ENTRY_POINT).permitAll()
-                .and()
-                .authorizeRequests()
-                .antMatchers(TOKEN_BASED_AUTH_ENTRY_POINT).authenticated();
+                    .authorizeRequests()
+                    .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll()
+                    .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()
+/*                .antMatchers(H2_ENTRY_POINT).permitAll()*/
+/*                .and()
+                    .authorizeRequests()
+                    .antMatchers(TOKEN_BASED_AUTH_ENTRY_POINT).authenticated()*/
 
-        httpSecurity.headers().frameOptions().disable();
+                .and()
+                    .addFilterBefore(corsRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

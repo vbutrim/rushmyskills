@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import {isMobile} from 'react-device-detect';
 import FacebookLogin from 'react-facebook-login';
@@ -40,7 +41,6 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
                     size="small"
                     isMobile={isMobile}
                     disableMobileRedirect={true} // Explanation: https://github.com/keppelen/react-facebook-login/issues/124
-                    onClick={this.componentClicked}
                     callback={this.responseFacebook}/>
             );
         }
@@ -52,13 +52,27 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
         );
     }
 
-    private componentClicked = () => {
-        console.log('clicked');
-    }
+    private responseFacebook = (fbAuthResponse: ExtendedReactFacebookLoginInfo) => {
+        console.log(fbAuthResponse);
 
-    private responseFacebook = (response: ExtendedReactFacebookLoginInfo) => {
-        console.log(response);
-        this.props.getAuthorized(response);
+        const headers = new Headers({
+            'Content-Type': 'application/json',
+        });
+        axios.post('http://localhost:8090/api/auth/login/', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            userId: fbAuthResponse.id,
+            name: fbAuthResponse.name,
+            email: fbAuthResponse.email,
+            pictureUrl: fbAuthResponse.picture.data.url,
+        }).then((serverResponse) => {
+            console.log(serverResponse);
+            localStorage.clear();
+            localStorage.setItem('accessToken', serverResponse.data.accessToken);
+            localStorage.setItem('refreshToken', serverResponse.data.refreshToken);
+            this.props.getAuthorized(fbAuthResponse);
+        }).catch((serverError) => console.log(serverError));
     }
 }
 

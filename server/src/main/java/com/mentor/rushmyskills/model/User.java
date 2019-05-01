@@ -1,6 +1,7 @@
 package com.mentor.rushmyskills.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -20,6 +21,7 @@ import javax.validation.constraints.Size;
         })
 })
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 public class User {
 
@@ -44,7 +46,7 @@ public class User {
         private String email;
 
         @NotBlank
-        @Size(max = 50)
+        @Size(max = 250)
         @NonNull
         private String pictureUrl;
 }
