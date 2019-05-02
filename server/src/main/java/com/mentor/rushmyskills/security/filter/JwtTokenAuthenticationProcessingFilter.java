@@ -20,14 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
-    private final AuthenticationFailureHandler failureHandler;
     private final TokenExtractor tokenExtractor;
 
     @Autowired
-    public JwtTokenAuthenticationProcessingFilter(AuthenticationFailureHandler failureHandler,
-                                                  TokenExtractor tokenExtractor, RequestMatcher matcher) {
+    public JwtTokenAuthenticationProcessingFilter(TokenExtractor tokenExtractor, RequestMatcher matcher) {
         super(matcher);
-        this.failureHandler = failureHandler;
         this.tokenExtractor = tokenExtractor;
     }
 
@@ -52,6 +49,6 @@ public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticati
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                               AuthenticationException failed) throws IOException, ServletException {
         SecurityContextHolder.clearContext();
-        failureHandler.onAuthenticationFailure(request, response, failed);
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication Failed");
     }
 }

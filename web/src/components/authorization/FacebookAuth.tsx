@@ -58,7 +58,8 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
         const headers = new Headers({
             'Content-Type': 'application/json',
         });
-        axios.post('http://localhost:8090/api/auth/login/', {
+
+        axios.post('http://localhost:8090/api/auth/login', {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -68,9 +69,11 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
             pictureUrl: fbAuthResponse.picture.data.url,
         }).then((serverResponse) => {
             console.log(serverResponse);
+
             localStorage.clear();
             localStorage.setItem('accessToken', serverResponse.data.accessToken);
             localStorage.setItem('refreshToken', serverResponse.data.refreshToken);
+
             this.props.getAuthorized(fbAuthResponse);
         }).catch((serverError) => console.log(serverError));
     }
