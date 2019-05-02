@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React from 'react';
 import {isMobile} from 'react-device-detect';
 import FacebookLogin from 'react-facebook-login';
+import ServerApi from '../../api/ServerApi';
 import {Authorization} from '../../store/authorization/types';
 import {ExtendedReactFacebookLoginInfo} from './ExtendedReactFacebookLoginInfo';
 
@@ -12,23 +12,31 @@ interface FacebookAuthProps {
 }
 
 class FacebookAuth extends React.Component<FacebookAuthProps> {
+    private myMe: string = '';
+
     public render(): React.ReactNode {
         let fbContent;
 
         if (this.props.authorization.isLoggedIn) {
             fbContent = (
-                <div style={{
-                    width: '400px',
-                    margin: 'auto',
-                    background: '#f4f4f4',
-                    padding: '20px',
-                    textAlign: 'center',
-                }}>
-                    <img src={this.props.authorization.picture}
-                         alt={this.props.authorization.name}/>
-                    <h2>Привет, {this.props.authorization.name}!</h2>
-                    Email: {this.props.authorization.email}
-                </div>
+                <React.Fragment>
+                    <div style={{
+                        width: '400px',
+                        margin: 'auto',
+                        background: '#f4f4f4',
+                        padding: '20px',
+                        textAlign: 'center',
+                    }}>
+                        <img src={this.props.authorization.picture}
+                             alt={this.props.authorization.name}/>
+                        <h2>Привет, {this.props.authorization.name}!</h2>
+                        Email: {this.props.authorization.email}
+                    </div>
+                    <div>
+                        <button onClick={this.getMyMe}>Press for Me</button>
+                        <label>{this.myMe}</label>
+                    </div>
+                </React.Fragment>
             );
         } else {
             fbContent = (
@@ -55,19 +63,7 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
     private responseFacebook = (fbAuthResponse: ExtendedReactFacebookLoginInfo) => {
         console.log(fbAuthResponse);
 
-        const headers = new Headers({
-            'Content-Type': 'application/json',
-        });
-
-        axios.post('http://localhost:8090/api/auth/login', {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            userId: fbAuthResponse.id,
-            name: fbAuthResponse.name,
-            email: fbAuthResponse.email,
-            pictureUrl: fbAuthResponse.picture.data.url,
-        }).then((serverResponse) => {
+        ServerApi.authorize(fbAuthResponse).then((serverResponse) => {
             console.log(serverResponse);
 
             localStorage.clear();
@@ -75,6 +71,12 @@ class FacebookAuth extends React.Component<FacebookAuthProps> {
             localStorage.setItem('refreshToken', serverResponse.data.refreshToken);
 
             this.props.getAuthorized(fbAuthResponse);
+        }).catch((serverError) => console.log(serverError));
+    }
+
+    private getMyMe = () => {
+        ServerApi.me().then((serverResponse) => {
+            console.log(serverResponse);
         }).catch((serverError) => console.log(serverError));
     }
 }
