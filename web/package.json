@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/headroom": "^0.7.31",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.0",
     "@types/react": "^16.8.12",
@@ -13,6 +14,10 @@
     "@types/styled-components": "^4.1.14",
     "axios": "^0.18.0",
     "braces": "^2.3.2",
+    "classnames": "^2.2.6",
+    "headroom.js": "^0.9.4",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
@@ -20,8 +25,8 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
-    "semantic-ui-react": "^0.86.0",
     "styled-components": "^4.2.0",
     "typesafe-actions": "^4.0.0",
     "typescript": "^3.4.2"
@@ -42,6 +47,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@types/classnames": "^2.2.8",
+    "@types/reactstrap": "^8.0.1",
     "tslint": "^5.15.0",
     "tslint-react": "^4.0.0"
   }

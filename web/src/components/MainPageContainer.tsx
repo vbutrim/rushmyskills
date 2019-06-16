@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {AppState} from '../store';
+import Header from './Header';
 import MainPage from './MainPage';
 
 const mapStateToProps = (state: AppState) => ({
@@ -12,7 +13,10 @@ type ReduxType = ReturnType<typeof mapStateToProps>;
 class MainPageContainer extends React.Component<ReduxType> {
     public render(): React.ReactNode {
         return (
-            <MainPage auth={this.props.message} />
+            <React.Fragment>
+                <Header/>
+                <MainPage auth={this.props.message}/>
+            </React.Fragment>
         );
     }
 }
