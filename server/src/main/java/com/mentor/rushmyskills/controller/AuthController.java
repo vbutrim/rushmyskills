@@ -67,7 +67,7 @@ public class AuthController {
                 user.setEmail(fbEmail);
             }
             if (!fbName.equals(user.getName())) {
-                user.setName(fbEmail);
+                user.setName(fbName);
             }
             if (!fbPictureUrl.equals(user.getPictureUrl())) {
                 user.setPictureUrl(fbPictureUrl);

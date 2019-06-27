@@ -1,16 +1,14 @@
 package com.mentor.rushmyskills.security.filter;
 
-import com.mentor.rushmyskills.security.token.RawAccessJwtToken;
 import com.mentor.rushmyskills.security.WebSecurityConfig;
 import com.mentor.rushmyskills.security.extractor.TokenExtractor;
 import com.mentor.rushmyskills.security.token.JwtAuthenticationToken;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mentor.rushmyskills.security.token.RawAccessJwtToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.servlet.FilterChain;
@@ -22,15 +20,13 @@ import java.io.IOException;
 public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
     private final TokenExtractor tokenExtractor;
 
-    @Autowired
     public JwtTokenAuthenticationProcessingFilter(TokenExtractor tokenExtractor, RequestMatcher matcher) {
         super(matcher);
         this.tokenExtractor = tokenExtractor;
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         String tokenPayload = request.getHeader(WebSecurityConfig.JWT_TOKEN_HEADER_PARAM);
         RawAccessJwtToken token = new RawAccessJwtToken(tokenExtractor.extract(tokenPayload));
         return getAuthenticationManager().authenticate(new JwtAuthenticationToken(token));

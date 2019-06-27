@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/api/**";
     private static final String TOKEN_REFRESH_ENTRY_POINT = "/api/auth/token";
     private static final String H2_ENTRY_POINT = "/h2-console/**";
+    private static final String FAVICON_ENTRY_POINT = "/favicon.ico";
 
     private final RestAuthenticationEntryPoint authenticationEntryPoint;
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
@@ -78,11 +79,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()
                     .antMatchers(TEST).permitAll()
 
+                    .antMatchers(H2_ENTRY_POINT).permitAll()
+                    .antMatchers(FAVICON_ENTRY_POINT).permitAll()
+
                     .anyRequest().authenticated()
-/*                .antMatchers(H2_ENTRY_POINT).permitAll()*/
 /*                .and()
                     .authorizeRequests()
                     .antMatchers(TOKEN_BASED_AUTH_ENTRY_POINT).authenticated()*/
+
+                .and().headers().frameOptions().disable()
 
                 .and()
                     .addFilterBefore(corsRequestFilter, UsernamePasswordAuthenticationFilter.class)

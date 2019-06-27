@@ -33,6 +33,16 @@ public class JwtTokenFactory {
         this.settings = settings;
     }
 
+    public Map<String, String> createTokenPair(UserContext userContext) {
+        JwtToken accessToken = createAccessJwtToken(userContext);
+        JwtToken refreshToken = createRefreshToken(userContext);
+
+        Map<String, String> tokenMap = new HashMap<>();
+        tokenMap.put("accessToken", accessToken.getToken());
+        tokenMap.put("refreshToken", refreshToken.getToken());
+        return tokenMap;
+    }
+
     private AccessJwtToken createAccessJwtToken(UserContext userContext) {
         if (StringUtils.isBlank(userContext.getFbUserId()))
             throw new IllegalArgumentException("Cannot create JWT Token without FbUserId");
@@ -69,15 +79,5 @@ public class JwtTokenFactory {
                 .compact();
 
         return new AccessJwtToken(token, claims);
-    }
-
-    public Map<String, String> createTokenPair(UserContext userContext) {
-        JwtToken accessToken = createAccessJwtToken(userContext);
-        JwtToken refreshToken = createRefreshToken(userContext);
-
-        Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("accessToken", accessToken.getToken());
-        tokenMap.put("refreshToken", refreshToken.getToken());
-        return tokenMap;
     }
 }

@@ -30,11 +30,10 @@ public class CorsRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String origin = request.getHeader(ORIGIN);
         if (origin!= null) {
-            if (origin.equals(jwtSettings.getCorsAllowedOrigin())) {
+            if (origin.equals(jwtSettings.getCorsAllowedOrigin()) || request.getRequestURI().contains("/h2-console")) {
                 response.setHeader("Access-Control-Allow-Origin", jwtSettings.getCorsAllowedOrigin());
                 response.setHeader("Access-Control-Allow-Credentials", "true");
-                response.setHeader("Access-Control-Allow-Headers",
-                        request.getHeader("Access-Control-Request-Headers"));
+                response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
 
             } else {
                 throw new AuthenticationException("Origin not allowed according to current CORS configuration: " + request.getHeader(ORIGIN) + " Allowed " + jwtSettings.getCorsAllowedOrigin());
