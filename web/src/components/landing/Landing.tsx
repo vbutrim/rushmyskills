@@ -18,6 +18,11 @@ import {
     InputGroupText,
     Row
 } from 'reactstrap';
+import FacebookAuthContainer from '../authorization/FacebookAuthContainer';
+
+const commonHeight = {
+    height: '48px',
+};
 
 // core components
 
@@ -35,56 +40,23 @@ class Landing extends React.Component {
             <>
                 <main ref="main">
                     <div className="position-relative">
-                        {/* shape Hero */}
                         <section className="section section-lg section-shaped pb-250">
                             <div className="shape shape-style-1 shape-default">
-                                <span />
-                                <span />
-                                <span />
-                                <span />
-                                <span />
-                                <span />
-                                <span />
-                                <span />
-                                <span />
                             </div>
                             <Container className="py-lg-md d-flex">
                                 <div className="col px-0">
                                     <Row>
                                         <Col lg="6">
                                             <h1 className="display-3 text-white">
-                                                A beautiful Design System{' '}
-                                                <span>completed with examples</span>
+                                                Индивидуальные занятия {' '} с ментором{' '}
+                                                <span>для саморазвития и определения себя в жизни</span>
                                             </h1>
                                             <p className="lead text-white">
-                                                The design system comes with four pre-built pages to
-                                                help you get started faster. You can change the text and
-                                                images and you're good to go.
+                                                Мы разработали эффективный подход, благодаря которому
+                                                учащиеся 9-11 классов, пообщавшись с экспертами из интересующих их областей,
+                                                смогут более осознанно подходить к выбору своей будущей профессии и понимать,
+                                                что делать дальше
                                             </p>
-                                            <div className="btn-wrapper">
-                                                <Button
-                                                    className="btn-icon mb-3 mb-sm-0"
-                                                    color="info"
-                                                    href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/alerts?ref=adsr-landing-page"
-                                                >
-                          <span className="btn-inner--icon mr-1">
-                            <i className="fa fa-code" />
-                          </span>
-                                                    <span className="btn-inner--text">Components</span>
-                                                </Button>
-                                                <Button
-                                                    className="btn-white btn-icon mb-3 mb-sm-0 ml-1"
-                                                    color="default"
-                                                    href="https://www.creative-tim.com/product/argon-design-system-react?ref=adsr-landing-page"
-                                                >
-                          <span className="btn-inner--icon mr-1">
-                            <i className="ni ni-cloud-download-95" />
-                          </span>
-                                                    <span className="btn-inner--text">
-                            Download React
-                          </span>
-                                                </Button>
-                                            </div>
                                         </Col>
                                     </Row>
                                 </div>
@@ -120,32 +92,12 @@ class Landing extends React.Component {
                                                         <i className="ni ni-check-bold" />
                                                     </div>
                                                     <h6 className="text-primary text-uppercase">
-                                                        Download Argon
+                                                        1. Определи преобладающие навыки
                                                     </h6>
                                                     <p className="description mt-3">
-                                                        Argon is a great free UI package based on Bootstrap
-                                                        4 that includes the most important components and
-                                                        features.
+                                                        Пройди быстрое тестирование, реши пару легких задачей, чтобы
+                                                        мы знали, что тебя может заинтересовать на нашей платформе
                                                     </p>
-                                                    <div>
-                                                        <Badge color="primary" pill className="mr-1">
-                                                            design
-                                                        </Badge>
-                                                        <Badge color="primary" pill className="mr-1">
-                                                            system
-                                                        </Badge>
-                                                        <Badge color="primary" pill className="mr-1">
-                                                            creative
-                                                        </Badge>
-                                                    </div>
-                                                    <Button
-                                                        className="mt-4"
-                                                        color="primary"
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Learn more
-                                                    </Button>
                                                 </CardBody>
                                             </Card>
                                         </Col>
@@ -156,32 +108,12 @@ class Landing extends React.Component {
                                                         <i className="ni ni-istanbul" />
                                                     </div>
                                                     <h6 className="text-success text-uppercase">
-                                                        Build Something
+                                                        2. Получи первоначальные рекомендации
                                                     </h6>
                                                     <p className="description mt-3">
-                                                        Argon is a great free UI package based on Bootstrap
-                                                        4 that includes the most important components and
-                                                        features.
+                                                        Список онлайн-курсов, приступить к прохождению которых ты
+                                                        можешь уже сейчас, и список экспертов, с которыми ты сможешь прокачать себя
                                                     </p>
-                                                    <div>
-                                                        <Badge color="success" pill className="mr-1">
-                                                            business
-                                                        </Badge>
-                                                        <Badge color="success" pill className="mr-1">
-                                                            vision
-                                                        </Badge>
-                                                        <Badge color="success" pill className="mr-1">
-                                                            success
-                                                        </Badge>
-                                                    </div>
-                                                    <Button
-                                                        className="mt-4"
-                                                        color="success"
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Learn more
-                                                    </Button>
                                                 </CardBody>
                                             </Card>
                                         </Col>
@@ -191,33 +123,14 @@ class Landing extends React.Component {
                                                     <div className="icon icon-shape icon-shape-warning rounded-circle mb-4">
                                                         <i className="ni ni-planet" />
                                                     </div>
-                                                    <h6 className="text-warning text-uppercase">
-                                                        Prepare Launch
+                                                    <h6 className="text-warning text-uppercase" style={commonHeight}>
+                                                        3. Поработай с ментором
                                                     </h6>
                                                     <p className="description mt-3">
-                                                        Argon is a great free UI package based on Bootstrap
-                                                        4 that includes the most important components and
-                                                        features.
+                                                        Построй индивидуальный карьерный путь, научись чему-то новому или
+                                                        получи ответы на все интересующие тебя вопросы о выбранной сфере
+                                                        деятельности
                                                     </p>
-                                                    <div>
-                                                        <Badge color="warning" pill className="mr-1">
-                                                            marketing
-                                                        </Badge>
-                                                        <Badge color="warning" pill className="mr-1">
-                                                            product
-                                                        </Badge>
-                                                        <Badge color="warning" pill className="mr-1">
-                                                            launch
-                                                        </Badge>
-                                                    </div>
-                                                    <Button
-                                                        className="mt-4"
-                                                        color="warning"
-                                                        href="#pablo"
-                                                        onClick={(e) => e.preventDefault()}
-                                                    >
-                                                        Learn more
-                                                    </Button>
                                                 </CardBody>
                                             </Card>
                                         </Col>
@@ -227,13 +140,16 @@ class Landing extends React.Component {
                         </Container>
                     </section>
                     <section className="section section-lg">
+                        <FacebookAuthContainer />
+                    </section>
+                    {/*<section className="section section-lg">
                         <Container>
                             <Row className="row-grid align-items-center">
                                 <Col className="order-md-2" md="6">
                                     <img
                                         alt="..."
                                         className="img-fluid floating"
-                                        src={require('../../assets/img/theme/promo-1.png')}
+                                        src={require('../../assets/img/theme/landing-mentor.jpg')}
                                     />
                                 </Col>
                                 <Col className="order-md-1" md="6">
@@ -461,7 +377,7 @@ class Landing extends React.Component {
                                 </Col>
                             </Row>
                         </Container>
-                        {/* SVG separator */}
+                         SVG separator
                         <div className="separator separator-bottom separator-skew zindex-100">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -741,7 +657,7 @@ class Landing extends React.Component {
                                 </Col>
                             </Row>
                         </Container>
-                        {/* SVG separator */}
+                         SVG separator
                         <div className="separator separator-bottom separator-skew zindex-100">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -790,8 +706,7 @@ class Landing extends React.Component {
                                             <FormGroup
                                                 className={classnames({
                                                     // focused: this.state.emailFocused,
-                                                })}
-                                            >
+                                                })}>
                                                 <InputGroup className="input-group-alternative">
                                                     <InputGroupAddon addonType="prepend">
                                                         <InputGroupText>
@@ -832,7 +747,7 @@ class Landing extends React.Component {
                                 </Col>
                             </Row>
                         </Container>
-                    </section>
+                    </section>*/}
                 </main>
             </>
         );

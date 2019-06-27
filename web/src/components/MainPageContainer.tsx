@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {AppState} from '../store';
 import Header from './Header';
-import MainPage from './MainPage';
+import Landing from './landing/Landing';
 
 const mapStateToProps = (state: AppState) => ({
     message: state.system.authorization,
@@ -15,7 +15,7 @@ class MainPageContainer extends React.Component<ReduxType> {
         return (
             <React.Fragment>
                 <Header/>
-                <MainPage auth={this.props.message}/>
+                <Landing/>
             </React.Fragment>
         );
     }

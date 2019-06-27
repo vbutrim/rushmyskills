@@ -1,7 +1,7 @@
 import React from 'react';
 import {Authorization} from '../store/authorization/types';
 import FacebookAuthContainer from './authorization/FacebookAuthContainer';
-import Landing from './static/Landing';
+import Landing from './landing/Landing';
 
 interface MenuProps {
     auth: Authorization;
