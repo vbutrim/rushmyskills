@@ -38,10 +38,18 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity authenticateFacebookUser(@Valid @RequestBody FBLoginRequest fbLoginRequest) {
 
-        @NotBlank String fbUserId = fbLoginRequest.getUserId();
-        @NotBlank String fbName = fbLoginRequest.getName();
-        @NotBlank String fbEmail = fbLoginRequest.getEmail();
-        @NotBlank String fbPictureUrl = fbLoginRequest.getPictureUrl();
+        @NotBlank
+        String fbUserId = fbLoginRequest.getUserId();
+
+        @NotBlank
+        String fbName = fbLoginRequest.getName();
+
+        @NotBlank
+        String fbEmail = fbLoginRequest.getEmail();
+
+        @NotBlank
+        String fbPictureUrl = fbLoginRequest.getPictureUrl();
+
         if (!userRepository.existsByFbUserId(fbUserId)) {
             /* Not used due to login logic
             if (userRepository.existsByEmailIgnoreCase(fbEmail)) {
